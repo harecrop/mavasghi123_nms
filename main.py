@@ -19,12 +19,7 @@ def custom_generate_unique_id(route: APIRoute):
 
 app = FastAPI(generate_unique_id_function=custom_generate_unique_id)
 allowed_hosts = config.get("allow_hosts")
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=allowed_hosts.split(",") if allowed_hosts else [],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+
 )
 
 app.include_router(api)
